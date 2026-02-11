@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:maramurry/core/constants/app_assets.dart';
 import 'package:maramurry/core/constants/app_colors.dart';
+import 'package:maramurry/core/routes/app_router.dart';
 import 'package:maramurry/core/widgets/app_button.dart';
 
 class OnboardingScreenFive extends StatefulWidget {
@@ -158,7 +160,7 @@ class _OnboardingScreenFiveState extends State<OnboardingScreenFive>
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Skip to login/home
+                          context.go(RoutePaths.login);
                         },
                         child: Text(
                           "Skip",
@@ -173,7 +175,7 @@ class _OnboardingScreenFiveState extends State<OnboardingScreenFive>
                       AppButton(
                         label: "Next",
                         onPressed: () {
-                          // context.go('/onboarding/4') or next screen
+                          context.push(RoutePaths.signUp);
                         },
                       ),
                     ],

@@ -161,7 +161,7 @@ class _OnboardingScreenFourState extends State<OnboardingScreenFour>
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Skip to login/home
+                          context.go(RoutePaths.login);
                         },
                         child: Text(
                           "Skip",

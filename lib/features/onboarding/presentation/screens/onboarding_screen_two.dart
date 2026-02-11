@@ -136,7 +136,7 @@ class _OnboardingScreenTwoState extends State<OnboardingScreenTwo>
 
                   TextButton(
                     onPressed: () {
-                      // Skip logic
+                      context.go(RoutePaths.login);
                     },
                     child: Text(
                       "Skip",

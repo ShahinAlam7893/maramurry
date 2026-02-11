@@ -11,4 +11,9 @@ class AppAssets {
       'assets/images/onboarding_one_image.png';
   static const String onboardingCalendar = 'assets/images/onboarding_calendar.png';
   static const String instaCard = 'assets/images/insta_card.png';
+  static const String signUpBackground = 'assets/images/signUp-background.jpg';
+  static const String forgetPassBG = 'assets/images/forget_pass_screen_bg.png';
+  static const String otpVerifiyBG = 'assets/images/otp_verify_screen_bg.png';
+  static const String createNewPassBG = 'assets/images/create_new_pass_bg.png';
+  static const String passCngBG = 'assets/images/pass_cng_success_bg.png';
 }

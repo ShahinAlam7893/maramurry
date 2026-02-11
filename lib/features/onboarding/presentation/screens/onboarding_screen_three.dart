@@ -167,7 +167,7 @@ class _OnboardingScreenThreeState extends State<OnboardingScreenThree>
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Skip to login/home
+                          context.go(RoutePaths.login);
                         },
                         child: Text(
                           "Skip",

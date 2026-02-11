@@ -107,7 +107,7 @@ class OnboardingScreen1 extends StatelessWidget {
                   AppButton(
                     label: 'Log In',
                     onPressed: () {
-                      // context.go('/login')
+                      context.go(RoutePaths.login);
                     },
                     type: ButtonType.outlined,
                   ),
