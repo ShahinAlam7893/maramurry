@@ -37,4 +37,17 @@ class AppColors {
   static const Color blueAccent   = Color(0xFF3B82F6);
 static const Color orangeAccent = Color(0xFFF59E0B);
 static const Color greenAccent  = Color(0xFF10B981);
+
+static const Color homeGradientStart = Color(0xFFEFE7DB);
+  static const Color homeGradientEnd = Color(0xFFD6E0CF);
+
+static const LinearGradient BackgroundGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFFEFE7DB),
+      Color(0xFFD6E0CF),
+    ],
+  );
+
 }

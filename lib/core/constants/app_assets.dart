@@ -1,5 +1,8 @@
 class AppAssets {
   static const String logo = 'assets/images/logo.svg';
+  static const String plantSvg = 'assets/icons/plantSvg.svg';
+  static const String projectSvg = 'assets/icons/projectSvg.svg';
+  static const String todayTaskSvg = 'assets/icons/todayTaskSvg.svg';
 
 
 // onboarding
@@ -16,4 +19,10 @@ class AppAssets {
   static const String otpVerifiyBG = 'assets/images/otp_verify_screen_bg.png';
   static const String createNewPassBG = 'assets/images/create_new_pass_bg.png';
   static const String passCngBG = 'assets/images/pass_cng_success_bg.png';
+  static const String profilePlaceholder = 'assets/images/profile_image.png';
+  static const String homeCardBG = 'assets/images/home_card_bg.png';
+  static const String projectImage = 'assets/images/projectImage.png';
+  static const String taskRose = 'assets/images/taskRose.png';
+  static const String taskHerbs = 'assets/images/taskHerbs.png';
+  static const String taskFertilizer = 'assets/images/taskFertilizer.png';
 }

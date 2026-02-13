@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maramurry/features/schedule/data/task_model.dart';
+
+
+class UpcomingTaskCard extends StatelessWidget {
+  final TaskModel task;
+  final VoidCallback onTap;
+
+  const UpcomingTaskCard({
+    super.key,
+    required this.task,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(20.r),
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(14.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(14.r),
+              child: Image.asset(
+                task.image,
+                width: 52.w,
+                height: 52.w,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            SizedBox(width: 14.w),
+
+            /// Info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    task.title,
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    task.projectName,
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    _formatDate(task.dateTime),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.orange,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            /// Checkbox placeholder
+            Container(
+              width: 22.w,
+              height: 22.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.grey.shade400),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _formatDate(DateTime date) {
+    final now = DateTime.now();
+    if (date.day == now.day) {
+      return 'Today, ${_time(date)}';
+    }
+    if (date.day == now.add(const Duration(days: 1)).day) {
+      return 'Tomorrow, ${_time(date)}';
+    }
+    return '${date.day}/${date.month}, ${_time(date)}';
+  }
+
+  String _time(DateTime date) {
+    final hour = date.hour % 12 == 0 ? 12 : date.hour % 12;
+    final ampm = date.hour >= 12 ? 'PM' : 'AM';
+    return '$hour:${date.minute.toString().padLeft(2, '0')} $ampm';
+  }
+}

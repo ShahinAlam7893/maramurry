@@ -16,57 +16,56 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _fadeAnimation;
+  late AnimationController _animController;
+  late Animation<double> _scale;
+  late Animation<double> _fade;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    _animController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1800),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
+    _scale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animController, curve: Curves.easeOutBack),
     );
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.4, 1.0)),
+    _fade = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animController, curve: const Interval(0.4, 1.0)),
     );
 
-    _controller.forward();
+    _animController.forward();
 
+    // Navigate to onboarding after 3 seconds
     Timer(const Duration(seconds: 3), () {
-      if (mounted) context.go(RoutePaths.onBoardingOne);
+      if (mounted) context.go(RoutePaths.onboarding);
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Stack(
         fit: StackFit.expand,
         children: [
-
+          // Background SVG
           SvgPicture.asset(
             AppAssets.onboarding1,
-            fit: BoxFit.contain,          
-            alignment: Alignment.center,
+            fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
           ),
 
-          
+          // Dark overlay
           Container(
             color: Colors.black.withOpacity(0.35),
           ),
@@ -74,23 +73,16 @@ class _SplashScreenState extends State<SplashScreen>
           // Content
           SafeArea(
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ScaleTransition(
-                    scale: _scaleAnimation,
-                    child: FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: SvgPicture.asset(
-                        AppAssets.logo,
-                        width: 180.w,
-                        height: 180.h,
-                      ),
-                    ),
+              child: ScaleTransition(
+                scale: _scale,
+                child: FadeTransition(
+                  opacity: _fade,
+                  child: SvgPicture.asset(
+                    AppAssets.logo,
+                    width: 180.w,
+                    height: 180.h,
                   ),
-
-                  SizedBox(height: 28.h),
-                ],
+                ),
               ),
             ),
           ),
